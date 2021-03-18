@@ -1,0 +1,64 @@
+# TODO
+
+ - [ ] check if avaiable on Google Fonts
+ - [ ] add a test string
+ - [ ] select a top 3 and a how to for each
+ - [ ] test on Chromebook
+ - [ ] make it kid friendly
+ - [ ] Use Firefox to ensure ALL GLYPHS exist in the font and look "right"
+ - [ ] Add a recommended column
+ - [ ] Check if it's a web safe font
+
+Note: Maria likes... a certain <a> for teaching kids. Look at the <a> and <g>
+in Andika.
+
+# Sans-serif
+Lucida Sans Unicode
+Calibri
+
+Noto Sans
+PT Sans
+PT Sans Narrow
+Pangolin
+Proxima Nova
+Roboto
+Nunito
+Trebuchet MS
+Varela Round
+Arial
+Arimo
+Montserrat
+Roboto Mono
+
+# Serif
+
+EB Garamond
+Gentium Basic
+Alegreya
+Times New Roman
+Cambria
+Playfair Dispaly
+Noto Serif
+Georgia
+
+# Script
+
+Lobster
+Kalam
+
+# Misc
+
+Cabin Sketch
+Papyrus
+
+# Handwritten
+
+Shadows into Light
+Bree Serif
+Comic Sans
+Joesefin Sans
+Righteous
+Andika
+Comfortaa
+TheGirlNextDoor
+Indie Flower

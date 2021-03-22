@@ -416,3 +416,23 @@ for (let [_family, data] of Object.entries(RAW_DATA)) {
 }
 
 export default FONT_DATABASE;
+
+
+// See: https://developers.google.com/fonts/docs/css2
+export function makeGoogleFontsURL() {
+  let endpoint = new URL('https://fonts.googleapis.com/css2');
+  let params = new URLSearchParams();
+  let i = 0;
+
+  for (let font of FONT_DATABASE) {
+    if (font.isAvailableOnGoogleFonts) {
+      params.append("family", font.family);
+    }
+  }
+
+  // TODO: add "text=" search param
+  params.set("display", "swap");
+
+  endpoint.search = params;
+  return endpoint.href;
+}

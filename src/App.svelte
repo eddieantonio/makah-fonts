@@ -1,9 +1,14 @@
 <script>
 import Font from "./Font.svelte";
-import FONT_DATABASE from "./font-database";
+import FONT_DATABASE, { makeGoogleFontsURL } from "./font-database";
 
-let exampleSentence = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax̌"
+let exampleSentence = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax̌";
+const googleFontsURL = makeGoogleFontsURL();
+
 </script>
+<svelte:head>
+<link rel="stylesheet" href={googleFontsURL} />
+</svelte:head>
 
 <header>
   <h1>Makah Font test</h1>

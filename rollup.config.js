@@ -1,6 +1,6 @@
 import svelte from 'rollup-plugin-svelte';
+import sveltePreprocess from "svelte-preprocess";
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 
 export default {
   input: 'src/main.js',
@@ -9,7 +9,16 @@ export default {
     format: 'iife',
   },
   plugins: [
-    svelte(),
+    svelte({
+      preprocess: sveltePreprocess({
+        postcss: {
+          plugins: [
+            require("tailwindcss"),
+            require("autoprefixer"),
+          ],
+        },
+      }),
+    }),
     resolve({ browser: true }),
   ],
 };

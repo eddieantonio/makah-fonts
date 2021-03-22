@@ -6,11 +6,18 @@ let exampleSentence = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax
 const googleFontsURL = makeGoogleFontsURL();
 
 </script>
+
+<style global lang="postcss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</style>
+
 <svelte:head>
 <link rel="stylesheet" href={googleFontsURL} />
 </svelte:head>
 
-<header>
+<header class="bg-blue-900 shadow-lg">
   <h1>Makah Font test</h1>
 </header>
 

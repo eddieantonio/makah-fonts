@@ -8,9 +8,13 @@
   "private": true,
   "dependencies": {
     "@rollup/plugin-node-resolve": "^11.2.0",
+    "autoprefixer": "^9",
+    "postcss": "^7",
     "rollup": "^2.42.3",
     "rollup-plugin-svelte": "^7.1.0",
-    "svelte": "^3.35.0"
+    "svelte": "^3.35.0",
+    "svelte-preprocess": "^4.6.9",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",

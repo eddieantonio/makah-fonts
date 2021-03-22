@@ -1,4 +1,6 @@
 <script>
+import Font from "./Font.svelte";
+
 let exampleSentence = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax̌"
 </script>
 
@@ -19,10 +21,16 @@ let exampleSentence = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td> Andika </td>
-        <td style="font-family: Andika;">{exampleSentence}</td>
-      </tr>
+      <Font fontName="Andika">{exampleSentence}</Font>
+      <Font fontName="Times">{exampleSentence}</Font>
+      <Font fontName="Comic Sans MS">{exampleSentence}</Font>
+      <Font fontName="Tahoma">{exampleSentence}</Font>
+      <Font fontName="Calibri">{exampleSentence}</Font>
+      <Font fontName="Lucida Sans Unicode">{exampleSentence}</Font>
+      <Font fontName="Papyrus">{exampleSentence}</Font>
+      <Font fontName="Trebuchet MS">{exampleSentence}</Font>
+      <Font fontName="Montserrat">{exampleSentence}</Font>
+      <Font fontName="Cambria">{exampleSentence}</Font>
     </tbody>
   <table>
 </main>

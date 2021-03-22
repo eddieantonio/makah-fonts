@@ -1,8 +1,8 @@
 <script>
-export let fontName;
+export let font;
 </script>
 
-<tr style="font-family: '{fontName}'">
-  <td> {fontName} </td>
+<tr style={font.css}>
+  <td>{font.family}</td>
   <td><slot></slot></td>
 </tr>

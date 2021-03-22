@@ -1,5 +1,6 @@
 <script>
 import Font from "./Font.svelte";
+import FONT_DATABASE from "./font-database";
 
 let exampleSentence = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax̌"
 </script>
@@ -21,16 +22,9 @@ let exampleSentence = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax
       </tr>
     </thead>
     <tbody>
-      <Font fontName="Andika">{exampleSentence}</Font>
-      <Font fontName="Times">{exampleSentence}</Font>
-      <Font fontName="Comic Sans MS">{exampleSentence}</Font>
-      <Font fontName="Tahoma">{exampleSentence}</Font>
-      <Font fontName="Calibri">{exampleSentence}</Font>
-      <Font fontName="Lucida Sans Unicode">{exampleSentence}</Font>
-      <Font fontName="Papyrus">{exampleSentence}</Font>
-      <Font fontName="Trebuchet MS">{exampleSentence}</Font>
-      <Font fontName="Montserrat">{exampleSentence}</Font>
-      <Font fontName="Cambria">{exampleSentence}</Font>
+      {#each FONT_DATABASE as font}
+        <Font font={font}>{exampleSentence}</Font>
+      {/each}
     </tbody>
   <table>
 </main>

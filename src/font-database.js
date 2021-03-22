@@ -1,3 +1,7 @@
+const TOP_PICKS = new Set([
+  "Arial", "Times New Roman", "Tahoma",
+]);
+
 // Copy-pasted form form.
 const RAW_DATA = {
   "Andika": {
@@ -248,7 +252,7 @@ const RAW_DATA = {
     "Devoid of rendering oddities?": "",
     "Recommended": ""
   },
-  "Shadows into Light": {
+  "Shadows Into Light": {
     "Style": "Handwritten",
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
@@ -275,7 +279,7 @@ const RAW_DATA = {
     "Devoid of rendering oddities?": "",
     "Recommended": ""
   },
-  "Josefina Sans": {
+  "Josefin Sans": {
     "Style": "Handwritten",
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
@@ -388,8 +392,13 @@ class CandidateFont {
     return this.isQualified;
   }
 
+  // TODO: give a reason why?
+  get isDiscouraged() {
+    return !this.isRecommended;
+  }
+
   get isTopPick() {
-    return false;
+    return TOP_PICKS.has(this.family);
   }
 
   get googleFontsURL() {

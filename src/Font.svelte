@@ -2,7 +2,11 @@
 export let font;
 </script>
 
-<tr style={font.css}>
-  <td>{font.family}</td>
-  <td><slot></slot></td>
+<tr>
+  <td>
+    {#if font.isDiscouraged }👎🏼{/if}
+    {#if font.isTopPick}⭐️{/if}
+  </td>
+  <td style={font.css}>{font.family}</td>
+  <td style={font.css}><slot></slot></td>
 </tr>

@@ -22,6 +22,7 @@ const googleFontsURL = makeGoogleFontsURL();
   <table>
     <thead>
       <tr>
+        <th/>
         <th> Font </th>
         <th> Example </th>
       </tr>

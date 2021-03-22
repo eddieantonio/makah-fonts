@@ -1,0 +1,19 @@
+{
+  "name": "makah-fonts",
+  "version": "1.0.0",
+  "description": "Test for Makah Fonts",
+  "main": "index.js",
+  "author": "Eddie Antonio Santos <eddieantonio@hey.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "rollup": "^2.42.3",
+    "rollup-plugin-svelte": "^7.1.0",
+    "svelte": "^3.35.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "sirv-cli": "^1.0.11"
+  }
+}

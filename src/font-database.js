@@ -1,3 +1,5 @@
+import { ALPHABET } from "./makah-alphabet";
+
 const TOP_PICKS = new Set([
   "Arial", "Times New Roman", "Tahoma",
 ]);
@@ -439,7 +441,7 @@ export function makeGoogleFontsURL() {
     }
   }
 
-  // TODO: add "text=" search param
+  params.set("text", ALPHABET);
   params.set("display", "swap");
 
   endpoint.search = params;

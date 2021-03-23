@@ -11,8 +11,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "Yes",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "Yes",
+    "Has font rendering oddities?": "No",
   },
   "Calibri": {
     "Style": "Sans serif",
@@ -20,7 +20,7 @@ const RAW_DATA = {
     "Available on Google Fonts?": "No",
     "Web safe font": "No",
     "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has font rendering oddities": "",
   },
   "Lucida Sans Unicode": {
     "Style": "Sans serif",
@@ -124,8 +124,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "No",
     "Web safe font": "Yes",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "Yes",
+    "Has font rendering oddities?": "No",
     "Recommended": ""
   },
   "Arimo": {
@@ -161,7 +161,7 @@ const RAW_DATA = {
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
     "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Gentium Basic": {
@@ -187,9 +187,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "No",
     "Web safe font": "Yes",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
-    "Recommended": ""
+    "Has all glyphs?": "Yes",
+    "Has font rendering oddities?": "No",
   },
   "Cambria": {
     "Style": "Serif",
@@ -206,7 +205,7 @@ const RAW_DATA = {
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
     "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Noto Serif": {
@@ -216,6 +215,7 @@ const RAW_DATA = {
     "Web safe font": "No",
     "Has all glyphs?": "",
     "Devoid of rendering oddities?": "",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Georgia": {
@@ -305,7 +305,7 @@ const RAW_DATA = {
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
     "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "The Girl Next Door": {
@@ -331,8 +331,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "No",
     "Web safe font": "Yes",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "Yes",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Verdana": {
@@ -340,8 +340,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "No",
     "Web safe font": "Yes",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "No",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Tahoma": {
@@ -349,8 +349,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "No",
     "Web safe font": "Yes",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "Yes",
+    "Has font rendering oddities?": "No",
     "Recommended": ""
   },
   "Impact": {
@@ -358,8 +358,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "No",
     "Web safe font": "Yes",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "No",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   }
 };
@@ -372,6 +372,42 @@ class CandidateFont {
 
   get family() {
     return this._family;
+  }
+
+  get isTopPick() {
+    return TOP_PICKS.has(this.family);
+  }
+
+  get isRecommended() {
+    return this.isQualified && this.hasAllNecessaryGlyphs && this.rendersOk;
+  }
+
+  get isDiscouraged() {
+    if (!this.isQualified) return true;
+
+    return !this.isRecommended && allFieldsNotNull(this._rawData);
+
+    function allFieldsNotNull(datums) {
+      if (datums["Has all glyphs?"] === undefined) return false;
+      if (datums["Has font rendering oddities?"] === undefined) return false;
+
+      return true;
+    }
+  }
+
+  get comments() {
+    let reasons = [];
+
+    if (!this.isAvailableOnGoogleFonts && !this.isWebSafeFont)
+      reasons.push("Not available on Chromebooks (probably only availble with Microsoft Office installed)");
+
+    if (this.hasFontRenderingOddity)
+      reasons.push("Has graphical glitches (check «č̓», «k̓», «x̌»)");
+
+    if (!this.hasAllNecessaryGlyphs)
+      reasons.push("Does not contain all characters necessary (check «ʔ», «ƛ̓», «ɫ», «ʷ», «ŋ»)");
+
+    return reasons;
   }
 
   get style() {
@@ -390,17 +426,16 @@ class CandidateFont {
     return toBoolean(this._rawData["Web safe font"]);
   }
 
-  get isRecommended() {
-    return this.isQualified;
+  get rendersOk() {
+    return !this.hasFontRenderingOddity;
   }
 
-  // TODO: give a reason why?
-  get isDiscouraged() {
-    return !this.isRecommended;
+  get hasFontRenderingOddity() {
+    return toBoolean(this._rawData["Has font rendering oddities?"]);
   }
 
-  get isTopPick() {
-    return TOP_PICKS.has(this.family);
+  get hasAllNecessaryGlyphs() {
+    return toBoolean(this._rawData["Has all glyphs?"]);
   }
 
   get googleFontsURL() {

@@ -8,7 +8,13 @@ let writingSample;
 // HACK: this **should** call makeGoogleFontsURL() but that yields a 403
 // response if given a Referer: header... for some reason?
 const googleFontsURL = "./fonts.css";
-const EXAMPLE_SENTENCE = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax̌";
+
+// This is a meaningless sentence in Makah, but it does present some common
+// problem characters, such as «ʔ», «x̌», «ƛ̓», «ɫ», and «č̓».
+// A rough translation is "Hello, he is sleeping, I will see you" 🥴
+const EXAMPLE_SENTENCE = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫ, serifax̌";
+
+const COMMON_PROBLEM_CHARACTERS = "ʔ x̌ č̓  k̓ʷ ƛ̓ ɫ ŋ";
 
 changeTextToExample();
 
@@ -22,6 +28,10 @@ function changeTextToAlphabet() {
 
 function changeTextToExample() {
   writingSample = EXAMPLE_SENTENCE;
+}
+
+function changeTextToProblemChars() {
+  writingSample = COMMON_PROBLEM_CHARACTERS;
 }
 </script>
 
@@ -49,22 +59,31 @@ input {
       >
     </label>
 
-    <fieldset class="my-2">
+    <fieldset>
       <button type="button" on:click|preventDefault={changeTextToExample}
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >Example sentence</button>
       <button type="button" on:click|preventDefault={changeTextToAlphabet}
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >Alphabet</button>
       <button type="button" on:click|preventDefault={changeTextToCharacterSet}
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >Full character set</button>
+      <button type="button" on:click|preventDefault={changeTextToProblemChars}
+        class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >Common problem characters</button>
     </fieldset>
   </form>
 </div>
 
 <main class="shadow rounded border-b border-gray-200 sm:rounded-lg mx-8 mb-8">
   <table class="min-w-full divide-y divide-gray-200">
+    <colgroup>
+      <col span="1" style="width: 3em">
+      <col span="1" style="max-width: max-content">
+      <col span="1" style="min-width: 20em">
+    </colgroup>
+
     <thead class="bg-gray-50">
       <tr>
         <th scope="col" />
@@ -72,6 +91,7 @@ input {
         <th scope="col" class="text-left"> Example </th>
       </tr>
     </thead>
+
     <tbody class="bg-white divide-y divide-grat-200">
       {#each FONT_DATABASE as font}
         <Font font={font}>{writingSample}</Font>

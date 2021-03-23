@@ -49,8 +49,8 @@ input {
   <h1 class="text-xl">Makah Font test</h1>
 </header>
 
-<div class="w-full">
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+<div class="w-full shadow-md pb-2 my-6 px-8">
+  <form class="mb-4">
     <label> Example text:
       <input
         bind:value={writingSample}
@@ -60,42 +60,54 @@ input {
     </label>
 
     <fieldset>
-      <button type="button" on:click|preventDefault={changeTextToExample}
-        class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      <button type="button" on:click={changeTextToExample}
+        class="my-2 bg-blue-500 focus:bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:ring"
         >Example sentence</button>
-      <button type="button" on:click|preventDefault={changeTextToAlphabet}
-        class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      <button type="button" on:click={changeTextToAlphabet}
+        class="my-2 bg-blue-500 focus:bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:ring"
         >Alphabet</button>
-      <button type="button" on:click|preventDefault={changeTextToCharacterSet}
-        class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      <button type="button" on:click={changeTextToCharacterSet}
+        class="my-2 bg-blue-500 focus:bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:ring"
         >Full character set</button>
-      <button type="button" on:click|preventDefault={changeTextToProblemChars}
-        class="my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      <button type="button" on:click={changeTextToProblemChars}
+        class="my-2 bg-blue-500 focus:bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:ring"
         >Common problem characters</button>
     </fieldset>
   </form>
+
+  <aside class="mb-4 text-sm">
+    <h2 class="font-bold mb-2"> Glossary </h2>
+    <dl>
+      <dt class="ml-1">👎🏼</dt>
+      <dd class="ml-8"> Font is discouraged. See "why" for an explanation. </dd>
+      <dt class="ml-1">⭐️</dt>
+      <dd class="ml-8"> Font is a <strong>top-pick</strong>. You should use this font! </dd>
+    </dl>
+  </aside>
 </div>
 
-<main class="shadow rounded border-b border-gray-200 sm:rounded-lg mx-8 mb-8">
-  <table class="min-w-full divide-y divide-gray-200">
-    <colgroup>
-      <col span="1" style="width: 3em">
-      <col span="1" style="max-width: max-content">
-      <col span="1" style="min-width: 20em">
-    </colgroup>
+<main class="w-full overflow-y-hidden box-border">
+  <div class="mx-8 mb-8">
+    <table class="min-w-full shadow rounded border-b border-gray-200 divide-y divide-gray-200 rounded-lg">
+      <colgroup>
+        <col span="1" style="width: 3em">
+        <col span="1" style="width: max-content">
+        <col span="1">
+      </colgroup>
 
-    <thead class="bg-gray-50">
-      <tr>
-        <th scope="col" />
-        <th scope="col" class="text-left"> Font </th>
-        <th scope="col" class="text-left"> Example </th>
-      </tr>
-    </thead>
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" />
+          <th scope="col" class="text-left"> Font </th>
+          <th scope="col" class="text-left"> Example </th>
+        </tr>
+      </thead>
 
-    <tbody class="bg-white divide-y divide-grat-200">
-      {#each FONT_DATABASE as font}
-        <Font font={font}>{writingSample}</Font>
-      {/each}
-    </tbody>
-  <table>
+      <tbody class="bg-white divide-y divide-grat-200">
+        {#each FONT_DATABASE as font}
+          <Font font={font}>{writingSample}</Font>
+        {/each}
+      </tbody>
+    <table>
+  </div>
 </main>

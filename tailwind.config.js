@@ -4,7 +4,7 @@ module.exports = {
   purge: {
     enabled: production,
     content: [
-      "./src/**/.*.svelte",
+      "./src/**/*.svelte",
     ],
   },
   darkMode: false, // or 'media' or 'class'

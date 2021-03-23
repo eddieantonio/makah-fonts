@@ -3,10 +3,10 @@ export let font;
 </script>
 
 <tr>
-  <td>
+  <td class="text-center">
     {#if font.isDiscouraged }👎🏼{/if}
     {#if font.isTopPick}⭐️{/if}
   </td>
-  <td style={font.css}>{font.family}</td>
-  <td style={font.css}><slot></slot></td>
+  <td class="py-3" style={font.css}>{font.family}</td>
+  <td class="py-3 text-xl" style={font.css}><slot></slot></td>
 </tr>

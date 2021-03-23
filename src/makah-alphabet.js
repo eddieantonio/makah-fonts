@@ -63,7 +63,7 @@ const KEYBOARD_SET = [
   "Ɫ",
 ];
 
-export const ALPHABET = "ɁABCČC̓Č̓DEFGHḤIJKKʷK̓K̓ʷLⱢƛMNŋOPP̓QQʷQ̓Q̓ʷRSŠTT̓UVWXX̌YZ Ɂabcčc̓č̓defghḥijkk̓lƛ̓ɫmnŋopp̓qq̓rsštt̓uvwxx̌yz";
+export const ALPHABET = "ɁABCČC̓Č̓DEFGHḤIJKKʷK̓K̓ʷLⱢƛƛ̓MNŋOPP̓QQʷQ̓Q̓ʷRSŠTT̓UVWXX̌YZ Ɂabcčc̓č̓defghḥijkk̓lƛƛ̓ɫmnŋopp̓qq̓rsštt̓uvwxx̌yz";
 export const CHARACTER_SET = combineLists();
 
 function combineLists() {

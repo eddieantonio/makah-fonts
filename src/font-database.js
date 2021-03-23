@@ -1,7 +1,7 @@
 import { ALPHABET } from "./makah-alphabet";
 
 const TOP_PICKS = new Set([
-  "Arial", "Times New Roman", "Tahoma",
+  "Andika", "Arial", "Times New Roman", "Tahoma",
 ]);
 
 // Copy-pasted form form.
@@ -409,7 +409,7 @@ class CandidateFont {
   }
 
   get css() {
-    return `font-family: ${this.family}, serif`;
+    return `font-family: ${this.family}!important`;
   }
 }
 

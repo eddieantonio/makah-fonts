@@ -1,9 +1,22 @@
 <script>
 import Font from "./Font.svelte";
 import FONT_DATABASE, { makeGoogleFontsURL } from "./font-database";
+import MAKAH_ALPHABET from "./makah-alphabet";
 
-let exampleSentence = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax̌";
+let exampleSentence;
+
 const googleFontsURL = makeGoogleFontsURL();
+const EXAMPLE_SENTENCE = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax̌";
+
+changeTextToExample();
+
+function changeTextToAlphabet() {
+  exampleSentence = MAKAH_ALPHABET.join('');
+}
+
+function changeTextToExample() {
+  exampleSentence = EXAMPLE_SENTENCE;
+}
 </script>
 
 <svelte:head>
@@ -29,6 +42,9 @@ input {
         class="shadow border rounded w-full text-xl py-2 px-3 leading-tight focus:outline-none focus:ring transition"
       >
     </label>
+
+    <button type="button" on:click|preventDefault={changeTextToAlphabet}>Alphabet</button>
+    <button type="button" on:click|preventDefault={changeTextToExample}>Example</button>
   </form>
 </div>
 

@@ -63,8 +63,8 @@ const KEYBOARD_SET = [
   "Ɫ",
 ];
 
-const CHARACTER_SET = combineLists();
-export default CHARACTER_SET;
+export const ALPHABET = "ɁABCČC̓Č̓DEFGHḤIJKKʷK̓K̓ʷLⱢƛMNŋOPP̓QQʷQ̓Q̓ʷRSŠTT̓UVWXX̌YZ Ɂabcčc̓č̓defghḥijkk̓lƛ̓ɫmnŋopp̓qq̓rsštt̓uvwxx̌yz";
+export const CHARACTER_SET = combineLists();
 
 function combineLists() {
   const MIN_ASCII_PRINTABLE = ' '.charCodeAt(0);

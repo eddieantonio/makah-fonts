@@ -1,21 +1,25 @@
 <script>
 import Font from "./Font.svelte";
 import FONT_DATABASE, { makeGoogleFontsURL } from "./font-database";
-import MAKAH_ALPHABET from "./makah-alphabet";
+import { CHARACTER_SET, ALPHABET } from "./makah-alphabet";
 
-let exampleSentence;
+let writingSample;
 
 const googleFontsURL = makeGoogleFontsURL();
 const EXAMPLE_SENTENCE = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax̌";
 
 changeTextToExample();
 
+function changeTextToCharacterSet() {
+  writingSample = CHARACTER_SET.join('');
+}
+
 function changeTextToAlphabet() {
-  exampleSentence = MAKAH_ALPHABET.join('');
+  writingSample = ALPHABET;
 }
 
 function changeTextToExample() {
-  exampleSentence = EXAMPLE_SENTENCE;
+  writingSample = EXAMPLE_SENTENCE;
 }
 </script>
 
@@ -37,14 +41,23 @@ input {
   <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <label> Example text:
       <input
-        bind:value={exampleSentence}
+        bind:value={writingSample}
         autocomplete="off"
         class="shadow border rounded w-full text-xl py-2 px-3 leading-tight focus:outline-none focus:ring transition"
       >
     </label>
 
-    <button type="button" on:click|preventDefault={changeTextToAlphabet}>Alphabet</button>
-    <button type="button" on:click|preventDefault={changeTextToExample}>Example</button>
+    <fieldset class="my-2">
+      <button type="button" on:click|preventDefault={changeTextToExample}
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >Example sentence</button>
+      <button type="button" on:click|preventDefault={changeTextToAlphabet}
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >Alphabet</button>
+      <button type="button" on:click|preventDefault={changeTextToCharacterSet}
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >Full character set</button>
+    </fieldset>
   </form>
 </div>
 
@@ -59,7 +72,7 @@ input {
     </thead>
     <tbody class="bg-white divide-y divide-grat-200">
       {#each FONT_DATABASE as font}
-        <Font font={font}>{exampleSentence}</Font>
+        <Font font={font}>{writingSample}</Font>
       {/each}
     </tbody>
   <table>

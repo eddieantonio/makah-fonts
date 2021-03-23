@@ -1,11 +1,13 @@
 <script>
 import Font from "./Font.svelte";
-import FONT_DATABASE, { makeGoogleFontsURL } from "./font-database";
+import FONT_DATABASE from "./font-database";
 import { CHARACTER_SET, ALPHABET } from "./makah-alphabet";
 
 let writingSample;
 
-const googleFontsURL = makeGoogleFontsURL();
+// HACK: this **should** call makeGoogleFontsURL() but that yields a 403
+// response if given a Referer: header... for some reason?
+const googleFontsURL = "./fonts.css";
 const EXAMPLE_SENTENCE = "ʔux̌u·ʔaƛa·k,  weʔič̓   šuʔuk̓ʷaƛ̓  ɫax̌";
 
 changeTextToExample();

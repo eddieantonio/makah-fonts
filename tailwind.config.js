@@ -9,7 +9,9 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    fontFamily: {
+      'sans': ['Andika', 'Arial', 'sans-serif']
+    },
   },
   variants: {
     extend: {},

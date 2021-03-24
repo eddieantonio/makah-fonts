@@ -35,7 +35,7 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "No",
     "Web safe font": "No",
-    "Has all glyphs?": "",
+    "Has all glyphs?": "No",
     "Devoid of rendering oddities?": "",
   },
   "Noto Sans": {
@@ -43,8 +43,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "No",
+    "Has font rendering oddities": "No",
     "Recommended": ""
   },
   "PT Sans": {
@@ -70,8 +70,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "No",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Proxima Nova": {
@@ -224,7 +224,7 @@ const RAW_DATA = {
     "Available on Google Fonts?": "No",
     "Web safe font": "Yes",
     "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Lobster": {
@@ -232,8 +232,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "No",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Kalam": {
@@ -250,8 +250,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "No",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Shadows Into Light": {
@@ -295,8 +295,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "No",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Comfortaa": {
@@ -322,8 +322,8 @@ const RAW_DATA = {
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
-    "Has all glyphs?": "",
-    "Devoid of rendering oddities?": "",
+    "Has all glyphs?": "No",
+    "Has font rendering oddities?": "Yes",
     "Recommended": ""
   },
   "Courier New": {
@@ -404,7 +404,7 @@ class CandidateFont {
     if (this.hasFontRenderingOddity)
       reasons.push("Has graphical glitches (check «č̓», «k̓», «x̌»)");
 
-    if (!this.hasAllNecessaryGlyphs)
+    if (this.isMissingGlyphs)
       reasons.push("Does not contain all characters necessary (check «ʔ», «ƛ̓», «ɫ», «ʷ», «ŋ»)");
 
     return reasons;
@@ -419,23 +419,27 @@ class CandidateFont {
   }
 
   get isAvailableOnGoogleFonts() {
-    return toBoolean(this._rawData["Available on Google Fonts?"])
+    return toTristate(this._rawData["Available on Google Fonts?"]) === true;
   }
 
   get isWebSafeFont() {
-    return toBoolean(this._rawData["Web safe font"]);
+    return toTristate(this._rawData["Web safe font"]) === true;
   }
 
   get rendersOk() {
-    return !this.hasFontRenderingOddity;
+    return this.hasFontRenderingOddity === false;
   }
 
   get hasFontRenderingOddity() {
-    return toBoolean(this._rawData["Has font rendering oddities?"]);
+    return toTristate(this._rawData["Has font rendering oddities?"]) === true;
   }
 
   get hasAllNecessaryGlyphs() {
-    return toBoolean(this._rawData["Has all glyphs?"]);
+    return toTristate(this._rawData["Has all glyphs?"]) === true;
+  }
+
+  get isMissingGlyphs() {
+    return toTristate(this._rawData["Has all glyphs?"]) === false;
   }
 
   get googleFontsURL() {
@@ -448,13 +452,20 @@ class CandidateFont {
   }
 }
 
-function toBoolean(value) {
-  if (!value) return false;
+function toTristate(value) {
+  if (!value) return null;
 
-  if (value.toLowerCase() == "yes") {
-    return true;
-  } else {
-    return false;
+  if (typeof value != "string") {
+    throw new TypeError(`Expected value to be a string, but it's a ${typeof value}`);
+  }
+
+  switch (value.toLowerCase()) {
+    case "yes":
+      return true;
+    case "no":
+      return false;
+    default:
+      throw new RangeError(`invalid tristate: ${value}`);
   }
 }
 

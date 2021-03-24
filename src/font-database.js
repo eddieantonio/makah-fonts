@@ -399,7 +399,7 @@ class CandidateFont {
     let reasons = [];
 
     if (!this.isAvailableOnGoogleFonts && !this.isWebSafeFont)
-      reasons.push("Not available on Chromebooks (probably only availble with Microsoft Office installed)");
+      reasons.push("Not available on Chromebooks (probably only available with Microsoft Office installed)");
 
     if (this.hasFontRenderingOddity)
       reasons.push("Has graphical glitches (check «č̓», «k̓», «x̌»)");
@@ -449,6 +449,8 @@ class CandidateFont {
 }
 
 function toBoolean(value) {
+  if (!value) return false;
+
   if (value.toLowerCase() == "yes") {
     return true;
   } else {

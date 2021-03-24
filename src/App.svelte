@@ -40,6 +40,10 @@ function changeTextToProblemChars() {
 </svelte:head>
 
 <style>
+:global(body) {
+  font-family: Andika, Arial, sans-serif;
+}
+
 input {
   font-family: "Times New Roman", "Times", serif;
 }

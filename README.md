@@ -1,6 +1,13 @@
 An application to test fonts' suitability to fully render the
 entire Qʷi·qʷ·diččaq (Makah) alphabet.
 
+Develop
+=======
+
+You must use `yarn`:
+
+    yarn run watch
+
 License
 =======
 

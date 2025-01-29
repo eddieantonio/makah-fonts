@@ -2,10 +2,12 @@
   "name": "makah-fonts",
   "version": "1.0.0",
   "description": "Test for Makah Fonts",
-  "main": "index.js",
   "author": "Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "watch": "rollup -c -w"
+  },
   "dependencies": {
     "@rollup/plugin-node-resolve": "^11.2.0",
     "autoprefixer": "^10.2.5",

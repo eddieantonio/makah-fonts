@@ -361,6 +361,14 @@ const RAW_DATA = {
     "Has all glyphs?": "No",
     "Has font rendering oddities?": "Yes",
     "Recommended": ""
+  },
+  "URW Palladio HOT": {
+    "Style": "Serif",
+    "Specifically requested by community?": "No",
+    "Available on Google Fonts?": "No",
+    "Web safe font": "No",
+    "Has all glyphs?": "No",
+    "Has font rendering oddities?": "Yes",
   }
 };
 

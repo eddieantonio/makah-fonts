@@ -300,7 +300,7 @@ const RAW_DATA = {
     "Recommended": ""
   },
   "Comfortaa": {
-    "Style": "Handwritten",
+    "Style": "Sans Serif",
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",

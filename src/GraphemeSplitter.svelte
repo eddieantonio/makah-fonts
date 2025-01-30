@@ -1,5 +1,5 @@
 <script>
-import GraphemeSplitter from './vendor/grapheme-splitter';
+import GraphemeSplitter from './vendor/grapheme-splitter.js';
 export let text;
 
 const splitter = new GraphemeSplitter();

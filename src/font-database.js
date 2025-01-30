@@ -4,10 +4,10 @@ const TOP_PICKS = new Set([
   "Andika", "Arial", "Times New Roman", "Tahoma",
 ]);
 
-// Copy-pasted form form.
+// Now this is manually maintained.
 const RAW_DATA = {
   "Andika": {
-    "Style": "Handwritten",
+    "Style": "Sans serif",
     "Specifically requested by community?": "Yes",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
@@ -264,7 +264,7 @@ const RAW_DATA = {
     "Recommended": ""
   },
   "Bree Serif": {
-    "Style": "Handwritten",
+    "Style": "Serif",
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
@@ -282,7 +282,7 @@ const RAW_DATA = {
     "Recommended": ""
   },
   "Josefin Sans": {
-    "Style": "Handwritten",
+    "Style": "Sans serif",
     "Specifically requested by community?": "No",
     "Available on Google Fonts?": "Yes",
     "Web safe font": "No",
@@ -369,7 +369,26 @@ const RAW_DATA = {
     "Web safe font": "No",
     "Has all glyphs?": "No",
     "Has font rendering oddities?": "Yes",
-  }
+    "Recommended": ""
+  },
+  "Aboriginal Sans": {
+    "Style": "Sans serif",
+    "Specifically requested by community?": "No",
+    "Available on Google Fonts?": "No",
+    "Web safe font": "No",
+    "Has all glyphs?": "Yes",
+    "Has font rendering oddities?": "No",
+    "Recommended": ""
+  },
+  "Aboriginal Serif": {
+    "Style": "Serif",
+    "Specifically requested by community?": "No",
+    "Available on Google Fonts?": "No",
+    "Web safe font": "No",
+    "Has all glyphs?": "Yes",
+    "Has font rendering oddities?": "No",
+    "Recommended": ""
+  },
 };
 
 class CandidateFont {

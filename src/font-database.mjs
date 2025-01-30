@@ -500,6 +500,7 @@ const FONT_DATABASE = [];
 for (let [_family, data] of Object.entries(RAW_DATA)) {
   FONT_DATABASE.push(new CandidateFont(_family, data));
 }
+FONT_DATABASE.sort((a, b) => a.family.localeCompare(b.family));
 
 export default FONT_DATABASE;
 

@@ -1,5 +1,6 @@
 <script>
 import Font from "./Font.svelte";
+import GraphemeSplitter from "./GraphemeSplitter.svelte";
 import FONT_DATABASE from "./font-database";
 import { CHARACTER_SET, ALPHABET } from "./makah-alphabet";
 
@@ -105,7 +106,7 @@ input {
 
       <tbody class="bg-white divide-y divide-grat-200">
         {#each FONT_DATABASE as font}
-          <Font font={font}>{writingSample}</Font>
+          <Font font={font}><GraphemeSplitter text={writingSample} /></Font>
         {/each}
       </tbody>
     <table>

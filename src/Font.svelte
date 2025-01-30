@@ -26,9 +26,9 @@ export let font;
     {#if font.isDiscouraged }👎🏼{/if}
     {#if font.isTopPick}⭐️{/if}
   </td>
-  <td class="family-name py-3" style={font.css}>{font.family}</td>
+  <td class="family-name py-3" style={ font.css }>{ font.family }</td>
   <td class="sample py-3 content">
-    <p style={font.css} class="text-xl sample-text break-all"><slot></slot></p>
+    <p style={ font.css } class="text-xl sample-text break-all"><slot></slot></p>
     {#if font.isDiscouraged}
     <details>
       <summary class="cursor-pointer">
@@ -36,7 +36,7 @@ export let font;
       </summary>
       <ul class="list-disc ml-5">
         {#each font.comments as comment}
-        <li>{comment}</li>
+        <li>{ comment }</li>
         {/each}
       </ul>
     </details>

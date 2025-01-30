@@ -5,6 +5,7 @@
   "author": "Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
     "watch": "rollup -c -w"
   },

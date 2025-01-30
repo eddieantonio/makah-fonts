@@ -1,4 +1,4 @@
-import { ALPHABET } from "./makah-alphabet";
+import { ALPHABET } from "./makah-alphabet.js";
 
 const TOP_PICKS = new Set([
   "Andika", "Arial", "Times New Roman", "Tahoma",
@@ -508,7 +508,6 @@ export default FONT_DATABASE;
 export function makeGoogleFontsURL() {
   let endpoint = new URL('https://fonts.googleapis.com/css2');
   let params = new URLSearchParams();
-  let i = 0;
 
   for (let font of FONT_DATABASE) {
     if (font.isAvailableOnGoogleFonts) {
